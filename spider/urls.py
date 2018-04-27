@@ -3,6 +3,7 @@ from .views import *
 
 urlpatterns = [
     url(r'^keyword/$', KeyWordListView.as_view()),
+    url(r'^keyword/(?P<pk>\d+)/$', KeyWordDetailView.as_view()),
     url(r'^keyword/create/$', KeyWordCreateView.as_view()),
     url(r'^search_task/$', SearchListView.as_view()),
     url(r'^search_task/create/$', SearchCreateView.as_view()),

@@ -1,4 +1,5 @@
 from django.db import models
+import base64
 
 # Create your models here.
 # models文件是定义ORM的
@@ -6,6 +7,9 @@ from django.db import models
 
 class KeyWord(models.Model):
     keyword = models.CharField(unique=True, max_length=32)
+
+    def get_absolute_url(self):
+        return f'/spider/keyword/{self.id}/'
 
     def __str__(self):
         return self.keyword
@@ -21,6 +25,9 @@ class SearchTask(models.Model):
     max_limit = models.IntegerField("最大抓取个数", default=50)
     describe = models.TextField("描述", default='', blank=True)
 
+    def get_absolute_url(self):
+        return f'/spider/search_task/{self.id}'
+
     def __str__(self):
         return '%s-%s-%s' % (self.keyword, self.site, self.create_time)
 
@@ -33,12 +40,16 @@ class ItemData(models.Model):
     price = models.FloatField('价格')
     location = models.CharField('发货地', max_length=32)
     seller = models.CharField('商家', max_length=32)
-    view_sales = models.FloatField('购买人数')
+    view_sales = models.IntegerField('购买人数')
+
+    def get_image_base64(self):
+        if self.image:
+            return base64.b64encode(self.image.read()).decode()
+        return ''
 
     def __str__(self):
-        return '%d-名字为：%s-售价：%s元-评论数：%s' % (self.index, self.title, self.price, self.view_sales)
+        return '%d-名字为：%s-售价：%s元-购买人数：%s' % (self.index, self.title, self.price, self.view_sales)
         # return '%d-名字为：%s-售价：%s元 ' % (self.index, self.title, self.price)
-
 
 
 

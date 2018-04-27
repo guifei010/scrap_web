@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div>搜索词详情--<b>{{ keyword.keyword }}</b></div>
+
+<div>搜索历史{{ '  ' }}  <a href="/spider/search_task/create/">新建搜索</a></div>
+
+<ol>
+{% for search in keyword.searchtask_set.all %}
+    <li><a href="/spider/search_task/{{ search.id }}/">{{ search }}</a></li>
+{% empty %}
+    <div>没有搜索历史</div>
+{% endfor %}
+</ol>
+
+
+</body>
+</html>

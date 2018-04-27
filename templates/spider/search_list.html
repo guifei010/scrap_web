@@ -7,7 +7,7 @@
 <body>
 
 {% for search in searchtask_list %}
-    <div>{{ search.keyword }}<a href="/spider/search_task/{{ search.id }}/">查看详情</a></div>
+    <div>{{ search }}<a href="/spider/search_task/{{ search.id }}/">查看详情</a></div>
 {% endfor %}
 
 </body>

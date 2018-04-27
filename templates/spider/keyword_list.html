@@ -6,13 +6,19 @@
 </head>
 <body>
 
+<div><a href="/spider/keyword/create/">新建搜索词</a></div>
+
 {% for keyword in keyword_list %}
-    <p>{{ keyword.keyword }}</p>
-    <ol>
-    {% for search in keyword.searchtask_set.all %}
-        <li><a href="/spider/search_task/{{ search.id }}/">{{ search }}</a></li>
-    {% endfor %}
-    </ol>
+
+    <div><a href="/spider/keyword/{{ keyword.id }}/">{{ keyword.keyword }}</a></div>
+{#    <ol>#}
+{#    {% for search in keyword.searchtask_set.all %}#}
+{#        <li><a href="/spider/search_task/{{ search.id }}/">{{ search }}</a></li>#}
+{#    {% endfor %}#}
+{#    </ol>#}
+
+{% empty %}
+    <div>没有任何搜索关键词, 请<a href="/spider/keyword/create/">新建搜索词</a></div>
 {% endfor %}
 
 </body>

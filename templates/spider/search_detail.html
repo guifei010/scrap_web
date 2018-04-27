@@ -8,12 +8,22 @@
 
 <div>{{ searchtask }}</div>
 
-<ol>
-    {% for item in searchtask.itemdata_set.all %}
-        <li>{{ item }}</li>
-    {% endfor %}
-    <ul></ul>
-</ol>
+{#<ol>#}
+{#    {% for item in searchtask.itemdata_set.all %}#}
+{#        <li>{{ item }}</li>#}
+{#    {% endfor %}#}
+{#    <ul></ul>#}
+{#</ol>#}
+
+{% for item in searchtask.itemdata_set.all %}
+    <div style="border: #5bc0de 2px dashed; margin: 10px">
+        <h3>{{ item.title }}</h3>
+        <div><img width="300" height="300" src="data:image/jpg;base64,{{ item.get_image_base64 }}" /></div>
+        <div>价格: {{ item.price }}</div>
+        <div>发货地: {{ item.location }}</div>
+        <div>付款人数: {{ item.seller }}</div>
+    </div>
+{% endfor %}
 
 </body>
 </html>
