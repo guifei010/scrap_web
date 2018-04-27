@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+{#xmlns属性 是用来定义xml namespace（命名空间）的#}
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<form method="post">
+{#    # csrf验证，是防止黑客伪造POST请求用的#}
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="提交" />
+</form>
+</body>
+</html>
